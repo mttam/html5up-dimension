@@ -30,16 +30,10 @@
 #wrapper {
     position: relative;
     z-index: 10;
-    text-align: center;
 }
 
-#wrapper > * {
-    text-align: left;
-}
-
-/* Center the footer container */
-#wrapper #footer {
-    text-align: center;
+/* Simple footer centering without affecting layout */
+#footer {
     margin-left: auto;
     margin-right: auto;
 }
@@ -154,12 +148,6 @@
 #footer .copyright {
     position: relative;
     z-index: 2;
-}
-
-/* Add subtle glow to the entire wrapper */
-#wrapper {
-    position: relative;
-    z-index: 10;
 }
 
 /* Optional: Add subtle overlay to the entire wrapper background */
