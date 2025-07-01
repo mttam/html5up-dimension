@@ -64,12 +64,12 @@
         url("../../images/overlay.png");
     background-size: 
         100% 100%,
-        256px 256px;
+        64px 64px;
     background-repeat: 
         no-repeat,
         repeat;
     background-blend-mode: overlay, multiply;
-    opacity: 0.3;
+    opacity: 0.4;
     z-index: -1;
     border-radius: 10px;
 }
@@ -137,9 +137,9 @@
     right: 0;
     bottom: 0;
     background-image: url("../../images/overlay.png");
-    background-size: 128px 128px;
+    background-size: 64px 64px;
     background-repeat: repeat;
-    opacity: 0.08;
+    opacity: 0.12;
     z-index: -1;
     border-radius: 8px;
 }
@@ -195,9 +195,9 @@
     right: 0;
     bottom: 0;
     background-image: url("../../images/overlay.png");
-    background-size: 256px 256px;
+    background-size: 64px 64px;
     background-repeat: repeat;
-    opacity: 0.1;
+    opacity: 0.15;
     z-index: -1;
     border-radius: 10px;
 }
@@ -228,9 +228,9 @@
 #main article#about::before,
 #main article#contact::before {
     background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.02), rgba(0, 0, 0, 0.1)), url("../../images/overlay.png");
-    background-size: auto, 256px 256px;
+    background-size: auto, 64px 64px;
     background-repeat: no-repeat, repeat;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 /* Ensure content stays above the overlay effects */
@@ -307,10 +307,25 @@ p, a, li {
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Optional: Matrix-themed accents */
-.icon.fa-gem:before {
-    color: #0f0;
-    text-shadow: 0 0 20px #0f0;
+/* Custom chip icon styling with Matrix theme */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo .chip-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: block;
+    margin: 0 auto;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg) brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.logo:hover .chip-icon {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg) brightness(1.5) drop-shadow(0 0 10px #0f0);
+    transform: scale(1.1);
 }
 
 /* Add subtle matrix-inspired animations */
@@ -368,9 +383,9 @@ button:hover, input[type="submit"]:hover {
     right: 0;
     bottom: 0;
     background-image: url("../../images/overlay.png");
-    background-size: 128px 128px;
+    background-size: 64px 64px;
     background-repeat: repeat;
-    opacity: 0.05;
+    opacity: 0.08;
     z-index: -1;
     border-radius: 25px;
 }
@@ -430,9 +445,9 @@ button:hover, input[type="submit"]:hover {
     right: 0;
     bottom: 0;
     background-image: url("../../images/overlay.png");
-    background-size: 200px 200px;
+    background-size: 64px 64px;
     background-repeat: repeat;
-    opacity: 0.05;
+    opacity: 0.08;
     z-index: -1;
     border-radius: 15px;
 }
