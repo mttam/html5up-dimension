@@ -312,6 +312,32 @@ p, a, li {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+/* Style the logo link to be invisible */
+.logo a {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+    color: transparent !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.logo a:hover,
+.logo a:focus,
+.logo a:active,
+.logo a:visited {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+    color: transparent !important;
 }
 
 .logo .chip-icon {
@@ -323,7 +349,8 @@ p, a, li {
     transition: all 0.3s ease;
 }
 
-.logo:hover .chip-icon {
+.logo:hover .chip-icon,
+.logo a:hover .chip-icon {
     filter: invert(1) sepia(1) saturate(5) hue-rotate(90deg) brightness(1.5) drop-shadow(0 0 10px #0f0);
     transform: scale(1.1);
 }
