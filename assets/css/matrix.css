@@ -390,6 +390,117 @@ button:hover, input[type="submit"]:hover {
     border-radius: 25px;
 }
 
+/* Remove white borders from navigation */
+#header nav ul {
+    border: 1px solid rgba(0, 255, 0, 0.1) !important;
+}
+
+#header nav ul li {
+    border-left: none !important;
+    border-right: none !important;
+}
+
+#header nav ul li:first-child {
+    border-left: none !important;
+}
+
+#header nav ul li:last-child {
+    border-right: none !important;
+}
+
+/* Remove the central white line completely */
+#header nav.use-middle:after {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Remove borders from middle navigation items */
+#header nav.use-middle ul li.is-middle {
+    border-left: none !important;
+    border-right: none !important;
+    border: none !important;
+}
+
+/* Additional overrides for use-middle class */
+#header nav.use-middle {
+    position: relative !important;
+}
+
+#header nav.use-middle::before {
+    display: none !important;
+    content: none !important;
+}
+
+#header nav.use-middle::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+    border: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Ensure all pseudo-elements are removed */
+#header nav.use-middle *::before,
+#header nav.use-middle *::after {
+    background: none !important;
+    border: none !important;
+    content: none !important;
+    display: none !important;
+}
+
+/* Comprehensive white line removal - target any white backgrounds or borders in navigation */
+#header nav *[style*="background"],
+#header nav *[style*="border"] {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Override any dynamically added styles that create white lines */
+#header nav ul li {
+    position: relative !important;
+}
+
+#header nav ul li *::before,
+#header nav ul li *::after,
+#header nav ul li::before,
+#header nav ul li::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    border: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Force override any white/light colored elements */
+#header nav [style*="background: #ffffff"],
+#header nav [style*="background: white"],
+#header nav [style*="background-color: #ffffff"],
+#header nav [style*="background-color: white"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Remove any central dividers or borders */
+#header nav ul li:before,
+#header nav ul li:after {
+    display: none !important;
+}
+
+/* Ensure no pseudo-elements create lines */
+#header nav ul:before,
+#header nav ul:after {
+    border: none !important;
+}
+
 /* Enhanced logo styling */
 #header .logo {
     position: relative;
