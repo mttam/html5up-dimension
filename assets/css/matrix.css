@@ -1,0 +1,480 @@
+/* Matrix Rain Effect Styles */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Behind everything else */
+    pointer-events: none; /* Allow clicks to pass through */
+    background: #000;
+    display: block;
+}
+
+/* Update the #bg element to work with matrix effect */
+#bg {
+    z-index: 1; /* Above matrix canvas but below content */
+}
+
+#bg:before {
+    /* Make overlay more subtle to let matrix show through */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../../images/overlay.png");
+}
+
+#bg:after {
+    /* Hide the original background image */
+    display: none;
+}
+
+/* Ensure content stays above matrix effect */
+#wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+#wrapper > * {
+    text-align: left;
+}
+
+/* Center the footer container */
+#wrapper #footer {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Optional: Add a subtle glow effect to content */
+#header {
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.1),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add overlay effect to header */
+#header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, rgba(0, 0, 0, 0.2) 100%),
+        url("../../images/overlay.png");
+    background-size: 
+        100% 100%,
+        256px 256px;
+    background-repeat: 
+        no-repeat,
+        repeat;
+    background-blend-mode: overlay, multiply;
+    opacity: 0.3;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+/* Add scanlines to header */
+#header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+/* Ensure header content stays above overlay */
+#header .logo,
+#header .content,
+#header nav {
+    position: relative;
+    z-index: 2;
+}
+
+#main {
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Add overlay effect to footer */
+#footer {
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: 
+        0 0 15px rgba(0, 255, 0, 0.1),
+        inset 0 0 15px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    padding: 10px 20px;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+
+/* Add overlay pattern to footer */
+#footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/overlay.png");
+    background-size: 128px 128px;
+    background-repeat: repeat;
+    opacity: 0.08;
+    z-index: -1;
+    border-radius: 8px;
+}
+
+/* Ensure footer content is above overlay */
+#footer .copyright {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add subtle glow to the entire wrapper */
+#wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+/* Optional: Add subtle overlay to the entire wrapper background */
+#wrapper::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    background-image: url("../../images/overlay.png");
+    background-size: 512px 512px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Apply overlay effect to article sections */
+#main article {
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.1),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#main article:hover {
+    border-color: rgba(0, 255, 0, 0.2);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.2),
+        inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+#main article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/overlay.png");
+    background-size: 256px 256px;
+    background-repeat: repeat;
+    opacity: 0.1;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+/* Add subtle Matrix-style scanlines to articles */
+#main article::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+/* Specific styling for each article */
+#main article#intro::before,
+#main article#work::before,
+#main article#about::before,
+#main article#contact::before {
+    background-image: linear-gradient(to bottom, rgba(0, 255, 0, 0.02), rgba(0, 0, 0, 0.1)), url("../../images/overlay.png");
+    background-size: auto, 256px 256px;
+    background-repeat: no-repeat, repeat;
+    opacity: 0.3;
+}
+
+/* Ensure content stays above the overlay effects */
+#main article .inner,
+#main article h2,
+#main article p,
+#main article .image,
+#main article form,
+#main article .icons {
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced image styling within articles */
+#main article .image.main img {
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#main article .image.main img:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.2);
+}
+
+/* Form elements with Matrix styling */
+#main article form input,
+#main article form textarea,
+#main article form select {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    color: #fff;
+}
+
+#main article form input:focus,
+#main article form textarea:focus,
+#main article form select:focus {
+    border-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Matrix-styled buttons */
+#main article .button {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: #0f0;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+#main article .button:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+#main article .button.primary {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: rgba(0, 255, 0, 0.5);
+}
+
+#main article .button.primary:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+/* Make text more readable over matrix background */
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+p, a, li {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Optional: Matrix-themed accents */
+.icon.fa-gem:before {
+    color: #0f0;
+    text-shadow: 0 0 20px #0f0;
+}
+
+/* Add subtle matrix-inspired animations */
+@keyframes matrix-glow {
+    0%, 100% { 
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.2); 
+    }
+    50% { 
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.4), 0 0 30px rgba(0, 255, 0, 0.2); 
+    }
+}
+
+nav ul li a:hover {
+    animation: matrix-glow 2s infinite;
+    color: #0f0;
+}
+
+button:hover, input[type="submit"]:hover {
+    animation: matrix-glow 2s infinite;
+}
+
+/* Alternative overlay approach for stronger effect */
+#main article.matrix-enhanced {
+    background: 
+        linear-gradient(135deg, rgba(0, 255, 0, 0.02) 0%, rgba(0, 0, 0, 0.3) 100%),
+        url("../../images/overlay.png"),
+        rgba(0, 0, 0, 0.4);
+    background-size: 
+        100% 100%,
+        256px 256px,
+        100% 100%;
+    background-repeat: 
+        no-repeat,
+        repeat,
+        no-repeat;
+    background-blend-mode: overlay, multiply, normal;
+}
+
+/* Enhanced navigation styling with overlay effects */
+#header nav ul {
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    padding: 10px;
+}
+
+#header nav ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/overlay.png");
+    background-size: 128px 128px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    z-index: -1;
+    border-radius: 25px;
+}
+
+/* Enhanced logo styling */
+#header .logo {
+    position: relative;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 70%);
+    border: 2px solid rgba(0, 255, 0, 0.2);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 0, 0.2),
+        inset 0 0 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#header .logo:hover {
+    border-color: rgba(0, 255, 0, 0.4);
+    box-shadow: 
+        0 0 40px rgba(0, 255, 0, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+#header .logo::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-image: url("../../images/overlay.png");
+    background-size: 64px 64px;
+    background-repeat: repeat;
+    opacity: 0.1;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+/* Content area styling */
+#header .content {
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid rgba(0, 255, 0, 0.08);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+#header .content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/overlay.png");
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    opacity: 0.05;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+/* Ensure content text is above overlay */
+#header .content .inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add subtle matrix animation to the main title */
+#header .content h1 {
+    text-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.5),
+        0 0 20px rgba(0, 255, 0, 0.3),
+        0 0 30px rgba(0, 255, 0, 0.1);
+    animation: matrix-title-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes matrix-title-glow {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(0, 255, 0, 0.3),
+            0 0 20px rgba(0, 255, 0, 0.2),
+            0 0 30px rgba(0, 255, 0, 0.1);
+    }
+    100% {
+        text-shadow: 
+            0 0 15px rgba(0, 255, 0, 0.6),
+            0 0 25px rgba(0, 255, 0, 0.4),
+            0 0 35px rgba(0, 255, 0, 0.2);
+    }
+}

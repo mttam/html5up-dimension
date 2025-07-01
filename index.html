@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/matrix.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -44,7 +45,7 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro">
+							<article id="intro" class="matrix-enhanced">
 								<h2 class="major">Intro</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
@@ -52,7 +53,7 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work">
+							<article id="work" class="matrix-enhanced">
 								<h2 class="major">Work</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
@@ -60,14 +61,14 @@
 							</article>
 
 						<!-- About -->
-							<article id="about">
+							<article id="about" class="matrix-enhanced">
 								<h2 class="major">About</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							</article>
 
 						<!-- Contact -->
-							<article id="contact">
+							<article id="contact" class="matrix-enhanced">
 								<h2 class="major">Contact</h2>
 								<form method="post" action="#">
 									<div class="fields">
@@ -345,18 +346,89 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<footer id="footer">
 						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
+		</div>
 
-			</div>
+	<!-- Matrix Rain Background -->
+		<canvas id="matrix-canvas"></canvas>
 
-		<!-- BG -->
-			<div id="bg"></div>
+	<!-- BG -->
+		<div id="bg"></div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<!-- Matrix Rain Effect -->
+		<script>
+			// Direct Matrix Rain Implementation
+			document.addEventListener('DOMContentLoaded', function() {
+				console.log('Initializing Matrix Rain...');
+				
+				const canvas = document.getElementById('matrix-canvas');
+				if (!canvas) {
+					console.error('Canvas not found!');
+					return;
+				}
+				
+				const ctx = canvas.getContext('2d');
+				
+				// Set initial canvas size
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+				
+				// Matrix characters
+				const matrixChars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?";
+				
+				const fontSize = 14;
+				const columns = Math.floor(canvas.width / fontSize);
+				const drops = [];
+				
+				// Initialize drops
+				for(let i = 0; i < columns; i++) {
+					drops[i] = Math.random() * -100;
+				}
+				
+				function draw() {
+					// Black BG for the canvas with trailing effect
+					ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+					ctx.fillRect(0, 0, canvas.width, canvas.height);
+					
+					ctx.fillStyle = '#0F0'; // green text
+					ctx.font = fontSize + 'px arial';
+					
+					// loop over drops
+					for(let i = 0; i < drops.length; i++) {
+						// random character
+						const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+						
+						// x position, y position
+						ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+						
+						// sending the drop back to the top randomly after it has crossed the screen
+						if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+							drops[i] = 0;
+						}
+						
+						// incrementing Y coordinate
+						drops[i]++;
+					}
+				}
+				
+				// Resize handler
+				window.addEventListener('resize', function() {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				});
+				
+				// Start animation
+				setInterval(draw, 35);
+				
+				console.log('Matrix Rain started with', columns, 'columns');
+			});
+		</script>
 
 	</body>
 </html>
